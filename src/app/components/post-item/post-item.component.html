@@ -1,0 +1,22 @@
+<div class="col col-6 mb-3" >
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{ post.body }}</p>
+      <button class="btn btn-danger" *ngIf="isAdmin" (click)="onDelete(post.id)">Delete</button>
+      <button class="btn btn-primary ml-3"  (click)="onShowComment(post.id)">Show comments</button>
+      <!--<div class="card" *ngIf="post.showComment">-->
+        <!--<div class="card-body">-->
+          <!--<h5 class="card-title">{{ post.title }}</h5>-->
+          <!--<p class="card-text">{{ post.body }}</p>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.card-body &ndash;&gt;-->
+      <!--</div>-->
+      <!-- /.card -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.col col-6 -->
+
