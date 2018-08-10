@@ -59,7 +59,8 @@ export class PostsComponent implements OnInit {
       let new_post:Post = data;
       this.posts.unshift(new_post);
       this.toastr.success('New post added', "Message")
-
+    }, error =>{
+      this.toastr.error(error.message, "Error")
     });
     form.resetForm();
   }
@@ -78,6 +79,8 @@ export class PostsComponent implements OnInit {
       comments.forEach((item:Comment) =>{
         if(item.id === id)this.comment = item;
       })
+    }, error =>{
+      this.toastr.error(error.message, "Error")
     });
   }
 
