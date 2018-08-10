@@ -1,22 +1,22 @@
-<div class="col col-6 mb-3" >
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{ post.title }}</h5>
-      <p class="card-text">{{ post.body }}</p>
-      <button class="btn btn-danger" *ngIf="isAdmin" (click)="onDelete(post.id)">Delete</button>
-      <button class="btn btn-primary ml-3"  (click)="onShowComment(post.id)">Show comments</button>
-      <!--<div class="card" *ngIf="post.showComment">-->
-        <!--<div class="card-body">-->
-          <!--<h5 class="card-title">{{ post.title }}</h5>-->
-          <!--<p class="card-text">{{ post.body }}</p>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; /.card-body &ndash;&gt;-->
-      <!--</div>-->
-      <!-- /.card -->
+<div class="card" [ngClass]="{'bg-secondary':editPostId === postItem.id}">
+  <div class="card-body">
+    <h5 class="card-title">{{ postItem.title }}</h5>
+    <p class="card-text">{{ postItem.body }}</p>
+    <button class="btn btn-danger" *ngIf="isAdmin" (click)="onDelete(postItem.id)">Delete</button>
+    <button class="btn btn-warning" (click)="onEdit(postItem)" *ngIf="!editPostId">Edit</button>
+    <button class="btn btn-warning" *ngIf="editPostId" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-primary ml-3"  (click)="onShowComment(postItem.id)">Show comments</button>
+    <div class="card" *ngIf="postItem.showComment">
+      <div class="card-body">
+        <h5 class="card-title">{{ postItem.title }}</h5>
+        <p class="card-text">{{ postItem.body }}</p>
+      </div>
+      <!-- /.card-body -->
     </div>
-    <!-- /.card-body -->
+    <!-- /.card -->
   </div>
-  <!-- /.card -->
+  <!-- /.card-body -->
 </div>
-<!-- /.col col-6 -->
+<!-- /.card -->
+
 
