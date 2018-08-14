@@ -13,6 +13,7 @@ export class PostItemComponent implements OnInit {
   @Input('isAdmin') isAdmin;
   @Output () deletePost: EventEmitter<number> = new EventEmitter();
   @Output () showComment: EventEmitter<number> = new EventEmitter();
+  @Output () editPost: EventEmitter<Post> = new EventEmitter();
   editPostId: number;
 
   constructor(
@@ -36,9 +37,15 @@ export class PostItemComponent implements OnInit {
     this.showComment.emit(id);
   }
   onEdit(post: Post){
-    this.postService.emitEditEvent(post);
+    const updatePost = {
+      title: post.title,
+      body: post.body,
+      userId: post.userId,
+      id: post.id
+    };
+    this.editPost.emit(updatePost);
   }
   onCancel(){
-    this.postService.emitEditEvent({title:'',body:'', userId:1});
+    this.editPost.emit({title:'',body:'', userId:1});
   }
 }

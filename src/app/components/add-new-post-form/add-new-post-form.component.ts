@@ -14,6 +14,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class AddNewPostFormComponent implements OnInit {
   @Output() onAddNewPost: EventEmitter<Post> = new EventEmitter();
+  @Output() updatePost: EventEmitter<Post> = new EventEmitter();
   @Input ('posts')posts:Post[];
 
   formData:Post = {
@@ -30,7 +31,6 @@ export class AddNewPostFormComponent implements OnInit {
 
   ngOnInit() {
     this.postService.editTaskEvent.subscribe((post:Post)=>{
-      console.log('edit',post);
       this.formData = post;
     })
   }
@@ -57,5 +57,14 @@ export class AddNewPostFormComponent implements OnInit {
     this.postService.emitEditEvent({title:'',body:'', userId:1});
   }
 
+  onEditPost(){
+    const updatePost:Post = {
+      userId: this.formData.userId,
+      title: this.formData.title ,
+      body: this.formData.body,
+      id: this.formData.id,
+    };
+    this.updatePost.emit(updatePost);
+  }
 
 }

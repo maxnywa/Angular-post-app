@@ -5,7 +5,7 @@
   type = "ball-fall"
 ></ngx-spinner>
 <div class="container mt-5">
-  <app-add-new-post-form class="card card-body col-6 mx-auto mb-5" [posts]="posts" (onAddNewPost)="onAddNewPost($event)">
+  <app-add-new-post-form class="card card-body col-6 mx-auto mb-5" [posts]="posts" (onAddNewPost)="onAddNewPost($event)" (updatePost)="updatePost($event)">
 
   </app-add-new-post-form>
   <!-- /.app-add-new-post-form -->
@@ -18,6 +18,7 @@
       [isAdmin]="isAdmin"
       (deletePost)="onDelete($event)"
       (showComment)="onShowComment($event)"
+      (editPost) = "onEdit($event)"
     ></app-post-item>
     <!-- /.col col-6 -->
   </div>

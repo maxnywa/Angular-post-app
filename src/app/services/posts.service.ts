@@ -25,7 +25,9 @@ export class PostsService {
   addPost(post:Post):Observable<Post>{
     return this.http.post<Post>(`${this.apiUrl}/posts`,post);
   }
-
+  editPost(post:Post):Observable<Post>{
+    return this.http.patch<Post>(`${this.apiUrl}/posts/${post.id}`,post);
+  }
   emitEditEvent(post:Post):void{
     this.editTask.next(post);
   }

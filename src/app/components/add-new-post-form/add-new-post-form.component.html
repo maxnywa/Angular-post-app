@@ -33,6 +33,6 @@
     <div class="invalid-feedback" [hidden]="!text.errors?.minlength">Posts text must be at least 10 chars</div>
   </div>
   <button class="btn btn-primary" *ngIf="!formData.id" (click)= "onAddPost(form)">Add</button>
-  <button class="btn btn-primary mr-3" *ngIf="formData.id" [disabled]="form.invalid">Edit post</button>
+  <button class="btn btn-primary mr-3" *ngIf="formData.id" [disabled]="form.invalid" (click)="onEditPost()">Edit post</button>
   <button class="btn btn-primary" *ngIf="formData.id" (click)="onCancel()">Cancel</button>
 </form>

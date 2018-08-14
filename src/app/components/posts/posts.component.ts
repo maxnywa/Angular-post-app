@@ -72,4 +72,18 @@ export class PostsComponent implements OnInit {
     this.toastr.success('New post added', "Message")
   }
 
+  onEdit(post:Post){
+    this.postService.emitEditEvent(post)
+  }
+
+  updatePost(post:Post){
+    this.postService.editPost(post).subscribe((updatedPost:Post)=>{
+      this.posts.forEach(post =>{
+        if(post.id === updatedPost.id){
+          Object.assign(post,updatedPost);
+        }
+      });
+    });
+    this.onEdit({title:'',body:'', userId:1});
+  }
 }
