@@ -6,14 +6,17 @@
     <button class="btn btn-warning" (click)="onEdit(postItem)" *ngIf="!editPostId">Edit</button>
     <button class="btn btn-warning" *ngIf="editPostId" (click)="onCancel()">Cancel</button>
     <button class="btn btn-primary ml-3"  (click)="onShowComment(postItem.id)">Show comments</button>
-    <div class="card" *ngIf="postItem.showComment">
-      <div class="card-body">
-        <h5 class="card-title">{{ postItem.title }}</h5>
-        <p class="card-text">{{ postItem.body }}</p>
+    <div class="comments"*ngIf="postItem.showComment">
+      <div class="card" *ngFor="let comment of comments">
+        <div class="card-body">
+          <h5 class="card-title">{{ comment.name }}</h5>
+          <h6 class="card-title">{{ comment.email }}</h6>
+          <p class="card-text">{{ comment.body }}</p>
+        </div>
+        <!-- /.card-body -->
       </div>
-      <!-- /.card-body -->
+      <!-- /.card -->
     </div>
-    <!-- /.card -->
   </div>
   <!-- /.card-body -->
 </div>

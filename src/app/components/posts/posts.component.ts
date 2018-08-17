@@ -15,7 +15,7 @@ import {Comment} from "../../models/Comment";
 export class PostsComponent implements OnInit {
   posts: Post[];
   isAdmin = true;
-  comment: Comment;
+  comments: Comment[];
 
 
   constructor(
@@ -34,11 +34,9 @@ export class PostsComponent implements OnInit {
           this.toastr.error(error.message, "Error")
         });
 
-    setTimeout(()=>{
       this.spinner.hide();
-    },500)
-
   }
+
   onDelete(id: number){
     this.postService.deletePost(id).subscribe((data:Object)=>{
       this.posts = this.posts.filter(post => post.id != id);
@@ -48,21 +46,21 @@ export class PostsComponent implements OnInit {
       this.toastr.error(error.message, "Error")
     } );
   }
-  onShowComment(id){
+  onShowComment(id:number){
     this.posts.forEach(post =>{
       if(post.id === id){
+        this.comments = [];
         post.showComment = !post.showComment;
         if(post.showComment)this.showComment(id);
+      }else{
+        post.showComment = false;
       }
-
     })
   }
-  showComment(id){
-    this.commentService.getComments().subscribe((comments:Comment[])=>{
-      comments.forEach((item:Comment) =>{
-        if(item.id === id)this.comment = item;
-      })
-    }, error =>{
+  showComment(id:number){
+    this.commentService.getComments(id).subscribe((data) =>{
+        this.comments = data;
+      }, error =>{
       this.toastr.error(error.message, "Error")
     });
   }

@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Post } from "../../models/Post";
 import {PostsService} from "../../services/posts.service";
+import { Comment } from "../../models/Comment";
 
 
 @Component({
@@ -11,6 +12,7 @@ import {PostsService} from "../../services/posts.service";
 export class PostItemComponent implements OnInit {
   @Input('post') postItem:Post;
   @Input('isAdmin') isAdmin;
+  @Input('comments')comments:Comment[];
   @Output () deletePost: EventEmitter<number> = new EventEmitter();
   @Output () showComment: EventEmitter<number> = new EventEmitter();
   @Output () editPost: EventEmitter<Post> = new EventEmitter();
