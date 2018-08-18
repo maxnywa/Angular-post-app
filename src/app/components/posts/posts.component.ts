@@ -32,19 +32,22 @@ export class PostsComponent implements OnInit {
         this.posts = posts;
       },error =>{
           this.toastr.error(error.message, "Error")
-        });
-
-      this.spinner.hide();
+        },()=>{
+        this.spinner.hide();
+      });
   }
 
   onDelete(id: number){
+    this.spinner.show();
+
     this.postService.deletePost(id).subscribe((data:Object)=>{
       this.posts = this.posts.filter(post => post.id != id);
-
       this.toastr.success('Post deleted success', "Message")
     }, error =>{
       this.toastr.error(error.message, "Error")
-    } );
+    },()=>{
+      this.spinner.hide();
+    });
   }
   onShowComment(id:number){
     this.posts.forEach(post =>{
